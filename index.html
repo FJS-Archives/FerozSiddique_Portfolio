@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premium Animation & Illustration Services for Distinguished Brands and Studios. Professional 2D/3D Animation, Concept Art, Character Design.">
+    <meta name="description" content="Premium Animation & Illustration Services for Distinguished Brands and Studios.">
     <title>Feroz Siddique | Premium Animation & Illustration</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
     <nav>
         <a href="#hero" class="nav-logo">Feroz Siddique</a>
@@ -27,41 +32,39 @@
     </nav>
 
     <section id="hero">
-    <!-- Video Background -->
-    <div class="hero-video-background">
-        <video autoplay muted loop playsinline id="hero-video">
-            <source src="videos/20220326 Feroz Siddique Project 7 [Owg3mrTandk].mp4" type="video/mp4">
-            <source src="videos/hero-background.webm" type="video/webm">
-            <!-- Fallback image if video doesn't load -->
-            <img src="images/hero-fallback.jpg" alt="Hero Background">
-        </video>
-        <div class="video-overlay"></div>
-    </div>
-    
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1 class="hero-title">Crafting Visual Excellence</h1>
-            <p class="hero-subtitle">Premium Animation & Illustration for Distinguished Brands and Studios</p>
-            <p class="hero-skills">2D/3D Animation • Concept Art • Character Design • Illustration</p>
-            <div class="hero-cta-container">
-                <a href="#projects" class="cta-button">Explore Portfolio</a>
-                <a href="#contact" class="cta-button secondary">Schedule Consultation</a>
+        <div class="hero-video-background">
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="videos/20220326 Feroz Siddique Project 7 [Owg3mrTandk].mp4" type="video/mp4">
+                <img src="images/hero-fallback.jpg" alt="Hero Background">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text-wrapper">
+                <div class="reveal-holder">
+                    <h1 class="hero-title reveal-text">Crafting Visual Excellence</h1>
+                </div>
+                <div class="reveal-holder">
+                    <p class="hero-subtitle reveal-text" style="transition-delay: 0.1s">Premium Animation & Illustration for Distinguished Brands.</p>
+                </div>
+                <div class="reveal-holder">
+                    <p class="hero-skills reveal-text" style="transition-delay: 0.2s">2D/3D Animation • Concept Art • Character Design</p>
+                </div>
+                
+                <div class="hero-cta-container reveal-holder">
+                    <div class="reveal-text" style="transition-delay: 0.3s">
+                        <a href="#projects" class="cta-button">Explore Portfolio</a>
+                        <a href="#contact" class="cta-button secondary">Schedule Consultation</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="floating-card">
-                <img src="images/temple.png" alt="Temple Concept Art">
-            </div>
-            <div class="floating-card">
-                <img src="images/para.png" alt="Indian Mythology Character">
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <section id="about">
         <div class="section-header">
-            <h2 class="section-title">About Me</h2>
+            <div class="reveal-holder"><h2 class="section-title reveal-text">About Me</h2></div>
             <p class="section-intro">I'm a talented artist specializing in 2D animation, with additional skills in illustration, 3D modeling and animation.</p>
         </div>
         <div class="about-container">
@@ -72,16 +75,13 @@
                 </div>
                 <div class="about-highlights">
                     <div class="highlight-item">
-                        <h3>13+</h3>
-                        <p>Projects Delivered</p>
+                        <h3>13+</h3><p>Projects Delivered</p>
                     </div>
                     <div class="highlight-item">
-                        <h3>6+</h3>
-                        <p>Years of Professional Excellence</p>
+                        <h3>6+</h3><p>Years Experience</p>
                     </div>
                     <div class="highlight-item">
-                        <h3>100%</h3>
-                        <p>Client Satisfaction</p>
+                        <h3>100%</h3><p>Client Satisfaction</p>
                     </div>
                 </div>
             </div>
@@ -90,92 +90,68 @@
 
     <section id="services">
         <div class="section-header">
-            <h2 class="section-title">Premium Services</h2>
-            <p class="section-intro">Comprehensive animation and illustration solutions tailored to meet the exacting standards of distinguished clients.</p>
+            <div class="reveal-holder"><h2 class="section-title reveal-text">Premium Services</h2></div>
+            <p class="section-intro">Comprehensive animation and illustration solutions tailored to meet exacting standards.</p>
         </div>
         
         <div class="services-container">
             <div class="service-card">
                 <div class="service-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none">
-                        <path d="M14.752 11.168l-3.197-2.132A1 1 0 0 0 10 9.87v4.263a1 1 0 0 0 1.555.832l3.197-2.132a1 1 0 0 0 0-1.664z"></path>
-                        <rect width="20" height="15" x="2" y="7" rx="2"></rect>
-                    </svg>
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0 0 10 9.87v4.263a1 1 0 0 0 1.555.832l3.197-2.132a1 1 0 0 0 0-1.664z"></path><rect width="20" height="15" x="2" y="7" rx="2"></rect></svg>
                 </div>
                 <h3>Animation Production</h3>
-                <p>Comprehensive animation services from character animation to visual effects, executed with precision and artistic excellence.</p>
+                <p>Comprehensive animation services from character animation to visual effects.</p>
                 <ul class="service-features">
                     <li>Character Animation</li>
                     <li>Motion Graphics</li>
                     <li>Visual Effects</li>
-                    <li>Explainer Videos</li>
-                    <li>Storyboards</li>
-                    <li>Animatics</li>
-                    <li>2D & 3D Animation</li>
                 </ul>
             </div>
             <div class="service-card">
                 <div class="service-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 </div>
                 <h3>Concept Development</h3>
-                <p>Strategic world-building and character design that establishes the visual foundation for your project's success.</p>
+                <p>Strategic world-building and character design for visual foundations.</p>
                 <ul class="service-features">
                     <li>Character Design</li>
                     <li>Environment Art</li>
-                    <li>Prop Design</li>
                     <li>Style Guides</li>
                 </ul>
             </div>
             <div class="service-card">
                 <div class="service-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                    </svg>
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                 </div>
                 <h3>Premium Illustration</h3>
-                <p>Exceptional illustrations for distinguished publications, marketing campaigns, and entertainment projects.</p>
+                <p>Exceptional illustrations for publications, marketing, and entertainment.</p>
                 <ul class="service-features">
                     <li>Game Assets</li>
                     <li>Book Illustrations</li>
-                    <li>Marketing Graphics</li>
                     <li>Editorial Art</li>
                 </ul>
             </div>
             <div class="service-card">
                 <div class="service-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 </div>
                 <h3>3D Artistry</h3>
-                <p>Expert 3D modeling and rendering for games, animation, and visualization with meticulous attention to detail.</p>
+                <p>Expert 3D modeling and rendering for games and visualization.</p>
                 <ul class="service-features">
                     <li>Character Modeling</li>
                     <li>Environment Assets</li>
-                    <li>Product Visualization</li>
-                    <li>Game-Ready Models</li>
+                    <li>Product Viz</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="section-title">Portfolio</h2>
-        <p class="section-intro">A curated selection of my work for distinguished clients across entertainment, publishing, and brand development.</p>
+        <div class="reveal-holder"><h2 class="section-title reveal-text">Selected Works</h2></div>
         
         <div class="project-filters">
             <button class="filter-btn active" data-filter="all">All Works</button>
-            <button class="filter-btn" data-filter="professional">Studio Projects</button>
+            <button class="filter-btn" data-filter="professional">Studio</button>
             <button class="filter-btn" data-filter="indie">Independent</button>
             <button class="filter-btn" data-filter="commission">Commissioned</button>
         </div>
@@ -184,262 +160,156 @@
             <div class="project-card" data-category="professional">
                 <div class="project-media">
                     <img src="images/para.png" alt="Parallax Environment" onclick="openLightbox('images/para.png')">
-                    <span class="project-badge professional">Studio Project</span>
+                    <span class="project-badge professional">Studio</span>
                 </div>
                 <div class="project-info">
-                    <h3>Indian Mythological character sheet</h3>
-                    <p>The character sheet for a conceptual retelling of an Indian prince, who gets in trouble with the gods.</p>
-                    <ul class="tools-list">
-                        <li>Photoshop</li>
-                    </ul>
+                    <h3>Mythological Character</h3>
+                    <p>Conceptual retelling of an Indian prince.</p>
                 </div>
             </div>
+
             <div class="project-card" data-category="professional">
                 <div class="project-media">
-                    <img src="images/temple.png" alt="Ancient Temple Concept" onclick="openLightbox('images/temple.png')">
-                    <span class="project-badge professional">Studio Project</span>
+                    <img src="images/temple.png" alt="Ancient Temple" onclick="openLightbox('images/temple.png')">
+                    <span class="project-badge professional">Studio</span>
                 </div>
                 <div class="project-info">
-                    <h3>Ancient Temple Concept</h3>
-                    <p>Environment concept art for a Hindu/Buddhist temple, for architectural world-building. Made in Photoshop.</p>
-                    <ul class="tools-list">
-                        <li>Photoshop</li>
-                    </ul>
+                    <h3>Ancient Temple</h3>
+                    <p>Environment concept art for world-building.</p>
                 </div>
             </div>
+
             <div class="project-card" data-category="professional">
                 <div class="project-media">
-                    <img src="images/Siddique_Feroz_ANIM20100_Assignment5_CharacterTurnAround.png" alt="Character Turnaround" onclick="openLightbox('images/Siddique_Feroz_ANIM20100_Assignment5_CharacterTurnAround.png')">
-                    <span class="project-badge professional">Studio Project</span>
+                    <img src="images/Siddique_Feroz_ANIM20100_Assignment5_CharacterTurnAround.png" alt="Turnaround" onclick="openLightbox('images/Siddique_Feroz_ANIM20100_Assignment5_CharacterTurnAround.png')">
+                    <span class="project-badge professional">Studio</span>
                 </div>
                 <div class="project-info">
                     <h3>Character Turnaround</h3>
-                    <p>A comprehensive character turnaround sheet demonstrating technical precision and design consistency.</p>
-                    <ul class="tools-list">
-                        <li>Photoshop</li>
-                    </ul>
+                    <p>Technical precision and design consistency.</p>
                 </div>
             </div>
+
             <div class="project-card" data-category="commission">
                 <div class="project-media">
-                    <img src="images/miguel03.png" alt="Miguel Character Design" onclick="openLightbox('images/miguel03.png')">
-                    <span class="project-badge commission">Commissioned</span>
+                    <img src="images/miguel03.png" alt="Miguel Design" onclick="openLightbox('images/miguel03.png')">
+                    <span class="project-badge commission">Commission</span>
                 </div>
                 <div class="project-info">
-                    <h3>"Miguel" Character Design</h3>
-                    <p>Complete character design exploration including expression studies and dynamic pose variations.</p>
-                    <ul class="tools-list">
-                        <li>Blender</li>
-                    </ul>
+                    <h3>"Miguel" Design</h3>
+                    <p>Character design exploration.</p>
                 </div>
             </div>
+
             <div class="project-card" data-category="professional">
                 <div class="project-media video-item">
-                    <video src="videos/20220326 Feroz Siddique Project 7 [Owg3mrTandk].mp4" controls onclick="openLightbox('videos/20220326 Feroz Siddique Project 7 [Owg3mrTandk].mp4')"></video>
-                    <span class="project-badge professional">Studio Project</span>
+                    <video src="videos/20220326 Feroz Siddique Project 7 [Owg3mrTandk].mp4" muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;" onclick="openLightbox('videos/20220326 Feroz Siddique Project 7 [Owg3mrTandk].mp4')"></video>
+                    <span class="project-badge professional">Studio</span>
                 </div>
                 <div class="project-info">
                     <h3>2D Animation Demo</h3>
-                    <p>A demonstration of sophisticated 2D character animation techniques and visual effects execution.</p>
-                    <ul class="tools-list">
-                        <li>Adobe Animate</li>
-                    </ul>
+                    <p>Sophisticated character animation techniques.</p>
                 </div>
             </div>
+
             <div class="project-card" data-category="commission">
                 <div class="project-media video-item">
-                    <video src="videos/Miguel 3D render [1G-gDnV2SMY].mp4" controls onclick="openLightbox('videos/Miguel 3D render [1G-gDnV2SMY].mp4')"></video>
-                    <span class="project-badge commission">Commissiond</span>
+                    <video src="videos/Miguel 3D render [1G-gDnV2SMY].mp4" muted loop onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;" onclick="openLightbox('videos/Miguel 3D render [1G-gDnV2SMY].mp4')"></video>
+                    <span class="project-badge commission">Commission</span>
                 </div>
                 <div class="project-info">
-                    <h3>"Miguel" 3D Model Render</h3>
-                    <p>A premium 3D model and render showcasing advanced modeling techniques and material application.</p>
-                    <ul class="tools-list">
-                        <li>Blender</li>
-                    </ul>
+                    <h3>3D Render</h3>
+                    <p>Advanced modeling techniques.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="pricing">
-        <h2 class="section-title">Investment</h2>
-        <p class="section-intro">Premium service packages designed for projects of distinction. Custom proposals available for comprehensive projects.</p>
-        
+        <div class="reveal-holder"><h2 class="section-title reveal-text">Investment</h2></div>
         <div class="pricing-container">
             <div class="pricing-card">
                 <h3>Commission</h3>
-                <div class="price">$10 - $200</div>
-                <p class="price-description">Ideal for individual artworks</p>
+                <div class="price">$100+</div>
                 <ul class="package-features">
-                    <li>Single character illustration</li>
-                    <li>smaller animations</li>
-                    <li>Refined background elements</li>
-                    <li>Sketches, colors, and linework</li>
-                    <li>1-2 week delivery</li>
+                    <li>Single Character</li>
+                    <li>Sketches & Linework</li>
+                    <li>1-2 Week Delivery</li>
                 </ul>
                 <a href="#contact" class="cta-button">Inquire</a>
             </div>
             <div class="pricing-card featured">
-                <div class="popular-badge">Most Selected</div>
-                <h3>Independent Project</h3>
-                <div class="price">$200 - $1,000</div>
-                <p class="price-description">Comprehensive package for inde projects</p>
+                <div class="popular-badge">Selected</div>
+                <h3>Independent</h3>
+                <div class="price">$500+</div>
                 <ul class="package-features">
-                    <li>Multiple character designs</li>
-                    <li>Environment concepts</li>
-                    <li>Three refinement sessions</li>
-                    <li>2-4 week timeline</li>
-                    <li>Commercial licensing</li>
+                    <li>Multiple Characters</li>
+                    <li>Environment Concepts</li>
+                    <li>Commercial Licensing</li>
                 </ul>
-                <a href="#contact" class="cta-button">Request Proposal</a>
+                <a href="#contact" class="cta-button">Proposal</a>
             </div>
             <div class="pricing-card">
-                <h3>Studio Collaboration</h3>
-                <div class="price">$2,000+</div>
-                <p class="price-description">For established studios and enterprises</p>
+                <h3>Studio</h3>
+                <div class="price">Custom</div>
                 <ul class="package-features">
-                    <li>Complete character sets</li>
-                    <li>Comprehensive environment packages</li>
-                    <li>Unlimited refinement sessions</li>
-                    <li>Custom production timeline</li>
-                    <li>Source file delivery</li>
-                    <li>Priority scheduling</li>
+                    <li>Full Production Support</li>
+                    <li>Source Files</li>
+                    <li>Priority Scheduling</li>
                 </ul>
-                <a href="#contact" class="cta-button">Schedule Consultation</a>
-            </div>
-        </div>
-        
-        <div class="pricing-note">
-            <p>All engagements include a complimentary discovery session. Contact me for a tailored proposal addressing your specific requirements.</p>
-        </div>
-    </section>
-
-    <section id="process">
-        <h2 class="section-title">My Process</h2>
-        <p class="section-intro">A meticulous approach ensuring your vision is realized with precision and artistic excellence</p>
-        
-        <div class="process-container">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h3>Discovery & Strategy</h3>
-                <p>I commence with an in-depth consultation to understand your vision, objectives, audience, and technical requirements.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h3>Concept Development</h3>
-                <p>I create initial concepts, sketches, and storyboards to establish creative alignment before advancing to production.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h3>Production & Refinement</h3>
-                <p>The core production phase features regular progress reviews and refinement sessions to ensure alignment with your vision.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h3>Delivery & Continuity</h3>
-                <p>You receive finalized, optimized assets ready for implementation, with ongoing support as required.</p>
+                <a href="#contact" class="cta-button">Consult</a>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Begin Your Project</h2>
-        <p class="section-intro">Ready to elevate your visual presence? Let's discuss your project requirements.</p>
-        
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <div class="contact-method">
-                    <h4>Email</h4>
-                    <a href="mailto:feroz7214@gmail.com">feroz7214@gmail.com</a>
-                </div>
-                <div class="contact-method">
-                    <h4>Response Time</h4>
-                    <p>Within 24 hours</p>
-                </div>
-                <div class="contact-method">
-                    <h4>Availability</h4>
-                    <p>Currently accepting select new projects</p>
-                </div>
-            </div>
+    <div class="reveal-holder"><h2 class="section-title reveal-text">Begin Project</h2></div>
+    <div class="contact-container">
+        <form class="contact-form" id="project-inquiry" action="https://formspree.io/f/myzokegg" method="POST">
             
-            <form class="contact-form" id="project-inquiry">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="project-type">Project Category</label>
-                    <select id="project-type" name="project-type">
-                        <option value="">Select project category</option>
-                        <option value="2d-animation">2D Animation</option>
-                        <option value="3d-animation">3D Animation</option>
-                        <option value="concept-art">Concept Art</option>
-                        <option value="character-design">Character Design</option>
-                        <option value="illustration">Illustration</option>
-                        <option value="3d-modeling">3D Modeling</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="budget">Investment Range</label>
-                    <select id="budget" name="budget">
-                        <option value="">Select investment range</option>
-                        <option value="under-500">Under $500</option>
-                        <option value="500-2000">$500 - $2,000</option>
-                        <option value="2000-5000">$2,000 - $5,000</option>
-                        <option value="5000-plus">$5,000+</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Project Overview</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Please describe your project objectives and requirements..."></textarea>
-                </div>
-                <button type="submit" class="cta-button full-width">Submit Inquiry</button>
-            </form>
-        </div>
-    </section>
+            <input type="hidden" name="_subject" value="New Project Inquiry from Portfolio">
+            
+            <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+            
+            <input type="text" name="_gotcha" style="display:none">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="_replyto" required placeholder="email@address.com">
+            </div>
+            <div class="form-group">
+                <label for="message">Overview</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Tell me about your vision..."></textarea>
+            </div>
+            <button type="submit" class="cta-button full-width">Submit Inquiry</button>
+        </form>
+    </div>
+</section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-about">
-                <h3>Feroz Siddique</h3>
-                <p>Premium Animation and Illustration for Distinguished Clients</p>
-            </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <a href="#services">Services</a>
-                <a href="#projects">Portfolio</a>
-                <a href="#pricing">Investment</a>
-                <a href="#contact">Contact</a>
-            </div>
+            <p class="copyright">© 2024 Feroz Siddique. All rights reserved.</p>
             <div class="social-links">
-                <h4>Connect</h4>
-                <a href="#" target="_blank">ArtStation</a>
-                <a href="#" target="_blank">LinkedIn</a>
-                <a href="#" target="_blank">Instagram</a>
+                <a href="https://www.artstation.com/ferozjamilsiddique">ArtStation</a>
+                <a href="https://www.linkedin.com/feed/">LinkedIn</a>
+                <a href="https://www.instagram.com/fjs_archives/">Instagram</a>
             </div>
         </div>
-        <p class="copyright">© 2024 Feroz Siddique. All rights reserved.</p>
     </footer>
 
     <div class="lightbox" id="lightbox">
-    <button class="close-btn" title="Close lightbox" aria-label="Close lightbox" onclick="closeLightbox()">&times;</button>
-    <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Previous image" onclick="navigateGallery('prev')">&#10094;</button>
-    <button class="lightbox-arrow next" id="lightbox-next" aria-label="Next image" onclick="navigateGallery('next')">&#10095;</button>
-    
-    <div class="lightbox-media-container">
-        <img id="lightbox-img" style="display: none;">
-        <video id="lightbox-video" controls style="display: none;"></video>
+        <button class="close-btn" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-arrow prev" id="lightbox-prev" onclick="navigateGallery('prev')">&#10094;</button>
+        <button class="lightbox-arrow next" id="lightbox-next" onclick="navigateGallery('next')">&#10095;</button>
+        <div class="lightbox-media-container" id="lightbox-container">
+            <img id="lightbox-img" style="display: none;">
+            <video id="lightbox-video" controls style="display: none;"></video>
+        </div>
     </div>
-    
-    <div class="lightbox-counter" id="lightbox-counter"></div>
-</div>
 
     <script src="script.js"></script>
 </body>

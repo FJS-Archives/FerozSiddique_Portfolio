@@ -1,357 +1,318 @@
-// Enhanced JavaScript for professional portfolio with gallery navigation
+// Performance optimizations
+let ticking = false;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Mobile menu functionality
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinksContainer = document.querySelector('.nav-links');
-    
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navLinksContainer.classList.toggle('active');
+// 1. Optimized Cursor with Throttling
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+function updateCursor(e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    if (cursorDot) {
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+    }
+
+    if (cursorOutline && !ticking) {
+        ticking = true;
+        
+        requestAnimationFrame(() => {
+            cursorOutline.style.left = `${posX}px`;
+            cursorOutline.style.top = `${posY}px`;
+            ticking = false;
         });
     }
-    
-    // Close mobile menu when clicking on a link
-    const navAnchors = document.querySelectorAll('.nav-links a');
-    navAnchors.forEach(anchor => {
-        anchor.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navLinksContainer.classList.remove('active');
-        });
+}
+
+// Throttled mousemove for better performance
+function throttle(callback, delay) {
+    let lastCall = 0;
+    return function(...args) {
+        const now = Date.now();
+        if (now - lastCall < delay) return;
+        lastCall = now;
+        callback(...args);
+    }
+}
+
+window.addEventListener('mousemove', throttle(updateCursor, 16)); // ~60fps
+
+// Hover states with event delegation for better performance
+document.body.addEventListener('mouseover', (e) => {
+    if (e.target.matches('a, button, .project-card, input, textarea')) {
+        document.body.classList.add('hovering');
+    }
+});
+
+document.body.addEventListener('mouseout', (e) => {
+    if (e.target.matches('a, button, .project-card, input, textarea')) {
+        document.body.classList.remove('hovering');
+    }
+});
+
+// 2. Enhanced Text Reveals with Performance
+const observerOptions = { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        }
     });
-    
-    // Project filtering
+}, observerOptions);
+
+// 3. Enhanced Project Filters
+function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active state
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
             button.classList.add('active');
             
-            const filterValue = button.getAttribute('data-filter');
-            
+            // Filter projects with animation
             projectCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                const category = card.getAttribute('data-category');
+                const shouldShow = filter === 'all' || category === filter;
+                
+                if (shouldShow) {
                     card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
+                    setTimeout(() => card.style.opacity = '1', 50);
                 } else {
                     card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
+                    setTimeout(() => card.style.display = 'none', 300);
                 }
             });
         });
     });
+}
+
+// 4. Mobile Menu with Better UX
+function initMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
     
-    // Form submission handling
-    const contactForm = document.getElementById('project-inquiry');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const projectType = formData.get('project-type');
-            const budget = formData.get('budget');
-            const message = formData.get('message');
-            
-            // Show loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            // In a real implementation, you would send this data to a server
-            // For now, we'll simulate a network request
-            setTimeout(() => {
-                // Show success message
-                alert(`Thank you ${name}! Your inquiry has been received. I'll get back to you within 24 hours.`);
-                
-                // Reset form and button
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on links
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('active');
+            });
         });
     }
-    
-    // Highlight active nav link based on scroll position
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav .nav-links a');
+}
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollPosition = window.pageYOffset + 100;
-        
-        // Determine the current section in view
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        // Highlight the corresponding navigation link
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            // Check if the link's href contains the current section's ID
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
-    });
-    
-    // Add subtle animation to elements when they come into view
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.service-card, .project-card, .pricing-card, .testimonial-card, .process-step');
-        
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150;
-            
-            if (elementTop < window.innerHeight - elementVisible) {
-                element.style.opacity = "1";
-                element.style.transform = "translateY(0)";
-            }
-        });
-    };
-    
-    // Set initial state for animated elements
-    const animatedElements = document.querySelectorAll('.service-card, .project-card, .pricing-card, .testimonial-card, .process-step');
-    animatedElements.forEach(el => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(20px)";
-        el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    });
-    
-    // Initialize gallery navigation
-    initGalleryNavigation();
-    
-    // Call on load and on scroll for better UX
-    animateOnScroll();
-    window.addEventListener('scroll', animateOnScroll);
-});
-
-// Gallery navigation system
+// 5. Enhanced Lightbox with Animation
 let currentGalleryIndex = 0;
 let galleryItems = [];
 
-function initGalleryNavigation() {
-    // Collect all gallery items from project cards
-    const projectMedia = document.querySelectorAll('.project-media img, .project-media video');
-    galleryItems = Array.from(projectMedia).map(media => ({
-        element: media,
-        src: media.getAttribute('src'),
-        type: media.tagName.toLowerCase()
-    }));
+function initLightbox() {
+    // Build gallery items from all media
+    document.querySelectorAll('.project-media img, .project-media video').forEach(media => {
+        galleryItems.push({
+            src: media.getAttribute('src'),
+            type: media.tagName.toLowerCase(),
+            alt: media.getAttribute('alt') || 'Portfolio work'
+        });
+    });
 }
 
-function openLightbox(src, element) {
+function openLightbox(src) {
     const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    const video = document.getElementById('lightbox-video');
-    const prevBtn = document.getElementById('lightbox-prev');
-    const nextBtn = document.getElementById('lightbox-next');
-
-    // Find current index
+    const container = document.getElementById('lightbox-container');
     currentGalleryIndex = galleryItems.findIndex(item => item.src === src);
     
-    // Update navigation buttons visibility
-    updateNavigationButtons();
-
-    // Animate lightbox opening
-    lightbox.style.opacity = '0';
-    lightbox.classList.add('active');
-    
-    setTimeout(() => {
-        lightbox.style.opacity = '1';
-    }, 10);
-
-    // Set media content
-    if (galleryItems[currentGalleryIndex].type === 'video') {
-        video.src = galleryItems[currentGalleryIndex].src;
-        video.style.display = 'block';
-        img.style.display = 'none';
-        video.play().catch(error => {
-            console.warn("Autoplay was prevented:", error);
-        });
-    } else {
-        img.src = galleryItems[currentGalleryIndex].src;
-        img.style.display = 'block';
-        video.style.display = 'none';
-        video.pause();
+    if (currentGalleryIndex !== -1) {
+        lightbox.classList.add('active');
+        container.classList.add('slide-active');
+        updateLightboxContent();
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
     }
-
-    document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
+    const container = document.getElementById('lightbox-container');
     const video = document.getElementById('lightbox-video');
-
-    // Animate lightbox closing
-    lightbox.style.opacity = '0';
     
-    setTimeout(() => {
-        lightbox.classList.remove('active');
-        video.pause();
-        video.currentTime = 0;
-        document.body.style.overflow = '';
-    }, 300);
+    lightbox.classList.remove('active');
+    container.classList.remove('slide-active', 'slide-next', 'slide-prev');
+    video.pause();
+    document.body.style.overflow = ''; // Restore scrolling
 }
 
-function navigateGallery(direction) {
-    const lightbox = document.getElementById('lightbox');
+function updateLightboxContent() {
+    const item = galleryItems[currentGalleryIndex];
     const img = document.getElementById('lightbox-img');
     const video = document.getElementById('lightbox-video');
+    const container = document.getElementById('lightbox-container');
     
-    // Animate current media out
-    lightbox.querySelector('.lightbox-media-container').style.opacity = '0';
-    lightbox.querySelector('.lightbox-media-container').style.transform = direction === 'next' ? 'translateX(-20px)' : 'translateX(20px)';
+    // Reset and hide both
+    img.style.display = 'none';
+    video.style.display = 'none';
+    video.pause();
     
-    setTimeout(() => {
-        // Update index
-        if (direction === 'next') {
-            currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
-        } else {
-            currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
-        }
-        
-        // Update navigation buttons
-        updateNavigationButtons();
-        
-        // Set new media
-        if (galleryItems[currentGalleryIndex].type === 'video') {
-            video.src = galleryItems[currentGalleryIndex].src;
-            video.style.display = 'block';
-            img.style.display = 'none';
-            video.play().catch(error => {
-                console.warn("Autoplay was prevented:", error);
-            });
-        } else {
-            img.src = galleryItems[currentGalleryIndex].src;
-            img.style.display = 'block';
-            video.style.display = 'none';
-            video.pause();
-        }
-        
-        // Animate new media in
-        lightbox.querySelector('.lightbox-media-container').style.opacity = '1';
-        lightbox.querySelector('.lightbox-media-container').style.transform = 'translateX(0)';
-    }, 300);
-}
-
-function updateNavigationButtons() {
-    const prevBtn = document.getElementById('lightbox-prev');
-    const nextBtn = document.getElementById('lightbox-next');
-    
-    // Show/hide buttons based on gallery length
-    if (galleryItems.length <= 1) {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
+    if (item.type === 'video') {
+        video.style.display = 'block';
+        video.src = item.src;
+        video.load();
     } else {
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
+        img.style.display = 'block';
+        img.src = item.src;
+        img.alt = item.alt;
     }
 }
 
-// Close lightbox when clicking outside the media or pressing Escape
-document.addEventListener('click', (e) => {
-    const lightbox = document.getElementById('lightbox');
-    if (e.target === lightbox) {
+// 6. Form Handling (FIXED)
+function initForm() {
+    const form = document.getElementById('project-inquiry');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Stops page reload, but we will send data manually below
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<div class="loading-spinner"></div> Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // ACTUALLY send the data to Formspree using AJAX
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success!
+                    submitBtn.textContent = 'Message Sent!';
+                    form.reset();
+                } else {
+                    // Formspree returned an error (like spam detection)
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        alert(data["errors"].map(error => error["message"]).join(", "));
+                    } else {
+                        submitBtn.textContent = 'Error!';
+                        alert('Oops! There was a problem submitting your form');
+                    }
+                }
+            } catch (error) {
+                // Network error
+                submitBtn.textContent = 'Error!';
+                alert('Oops! There was a problem submitting your form');
+            }
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+    }
+}
+
+// 7. Video Optimization
+function initVideoOptimization() {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        // Add loading state
+        video.addEventListener('loadstart', () => {
+            video.parentElement.classList.add('loading');
+        });
+        
+        video.addEventListener('loadeddata', () => {
+            video.parentElement.classList.remove('loading');
+        });
+        
+        // Preload metadata only for better performance
+        video.preload = 'metadata';
+    });
+}
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Observe reveal elements
+    document.querySelectorAll('.reveal-text').forEach(el => observer.observe(el));
+    
+    // Initialize components
+    initFilters();
+    initMobileMenu();
+    initLightbox();
+    initForm();
+    initVideoOptimization();
+    
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
+// Lightbox navigation with animation
+function navigateGallery(dir) {
+    const container = document.getElementById('lightbox-container');
+    
+    // Add animation class based on direction
+    if (dir === 'next') {
+        container.classList.remove('slide-prev');
+        container.classList.add('slide-next');
+        currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+    } else {
+        container.classList.remove('slide-next');
+        container.classList.add('slide-prev');
+        currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+    }
+    
+    // Update content after a short delay for animation
+    setTimeout(() => {
+        updateLightboxContent();
+        // Reset animation classes after content update
+        setTimeout(() => {
+            container.classList.remove('slide-next', 'slide-prev');
+            container.classList.add('slide-active');
+        }, 50);
+    }, 300);
+}
+
+// Close lightbox on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
         closeLightbox();
     }
 });
 
-document.addEventListener('keydown', (e) => {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox.classList.contains('active')) {
-        if (e.key === 'Escape') {
-            closeLightbox();
-        } else if (e.key === 'ArrowLeft') {
-            navigateGallery('prev');
-        } else if (e.key === 'ArrowRight') {
-            navigateGallery('next');
-        }
+// Performance: Clean up on page hide
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // Pause videos when tab is not visible
+        document.querySelectorAll('video').forEach(video => video.pause());
     }
 });
-
-// Enhanced video background handling
-function initVideoBackground() {
-    const video = document.getElementById('hero-video');
-    const videoContainer = document.querySelector('.hero-video-background');
-    
-    if (video) {
-        // Show loading state
-        videoContainer.classList.add('loading');
-        
-        // Handle video load
-        video.addEventListener('loadeddata', () => {
-            videoContainer.classList.remove('loading');
-        });
-        
-        // Handle video errors
-        video.addEventListener('error', () => {
-            videoContainer.classList.remove('loading');
-            console.warn('Hero video failed to load, using fallback');
-        });
-        
-        // Ensure video plays when user interacts with page (autoplay policies)
-        document.addEventListener('click', () => {
-            if (video.paused) {
-                video.play().catch(e => console.log('Video play prevented:', e));
-            }
-        }, { once: true });
-        
-        // Mute/unmute toggle for video (optional feature)
-        let isMuted = true;
-        const muteButton = document.createElement('button');
-        muteButton.innerHTML = '🔇';
-        muteButton.className = 'video-mute-toggle';
-        muteButton.title = 'Toggle video sound';
-        muteButton.setAttribute('aria-label', 'Toggle video sound');
-        muteButton.style.cssText = `
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            color: var(--color-text-light);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        `;
-        
-        muteButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            isMuted = !isMuted;
-            video.muted = isMuted;
-            muteButton.innerHTML = isMuted ? '🔇' : '🔊';
-            muteButton.style.background = isMuted ? 'var(--glass-bg)' : 'var(--color-accent)';
-            muteButton.style.color = isMuted ? 'var(--color-text-light)' : 'var(--color-primary)';
-        });
-        
-        videoContainer.appendChild(muteButton);
-    }
-}
